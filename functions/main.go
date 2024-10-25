@@ -5,8 +5,12 @@ import (
 	"functions/pacote"
 )
 
+var idade int
+
 func main() {
-	fmt.Println("Hello, World!")
+	const nome string = "Gopher"
+	sobrenome := "Silva"
+	fmt.Println("Hello, World!", nome, sobrenome, idade)
 	fmt.Println(pacote.Foo)
 	fmt.Println(pacote.Bar)
 	pacote.PrintMinha()
