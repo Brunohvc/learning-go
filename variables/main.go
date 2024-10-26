@@ -43,6 +43,8 @@ func main() {
 	fmt.Println(arrEmpty)
 	fmt.Println(arr)
 	fmt.Println(arrIndex)
+
+	pointers()
 }
 
 func takeInt32(i int32) {
@@ -50,4 +52,27 @@ func takeInt32(i int32) {
 }
 func takeInt64(i int64) {
 	fmt.Println(i)
+}
+
+func pointers() {
+	var a int = 10
+	var b *int = &a
+	fmt.Println(a, b, *b)
+
+	x := 10
+	y := 10
+	z := takeX(x)
+	takeY(&y)
+	fmt.Println(x, z, y)
+
+}
+
+func takeX(h int) int {
+	fmt.Println("TakeX", h)
+	h = 100
+	return h
+}
+
+func takeY(y *int) {
+	*y = 100
 }
