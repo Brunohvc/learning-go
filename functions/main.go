@@ -73,7 +73,7 @@ func doDeferLastInFirstOut() {
 }
 
 func openFile() {
-	f, err := os.Open("file.txt")
+	f, err := os.Open("./file.txt")
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -81,5 +81,14 @@ func openFile() {
 	defer f.Close()
 
 	// print file content
-	fmt.Println(f)
+	b := make([]byte, 100)
+	n, err := f.Read(b)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println("string(b):", string(b))
+	fmt.Println("n:", n)
+	fmt.Println("b[:n]:", b[:n])
+	fmt.Println("string(b[:n])", string(b[:n]))
 }
