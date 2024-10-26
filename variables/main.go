@@ -14,6 +14,19 @@ import (
 // complex64 complex128
 // string
 func main() {
+	identifyExecution("variables", variables)
+	identifyExecution("pointers", pointers)
+	identifyExecution("slice", slice)
+	identifyExecution("appendInSlice", appendInSlice)
+	identifyExecution("sliceBoundChecks", sliceBoundChecks)
+}
+
+func identifyExecution(identifier string, function func()) {
+	fmt.Println("----- START ", identifier, " -----")
+	function()
+	fmt.Println("----- END ", identifier, " -----")
+}
+func variables() {
 	var i int = 10084
 	// conversão de int para float64
 	f := float64(i)
@@ -43,9 +56,6 @@ func main() {
 	fmt.Println(arrEmpty)
 	fmt.Println(arr)
 	fmt.Println(arrIndex)
-
-	pointers()
-	appendInSlice()
 }
 
 func takeInt32(i int32) {
@@ -78,6 +88,12 @@ func takeY(y *int) {
 	*y = 100
 }
 
+func slice() {
+	arr := [5]int{1, 2, 3, 4, 5}
+	slice := arr[1:3]
+	fmt.Println("SLICES", slice)
+}
+
 func appendInSlice() {
 	// array -> because has fixed size
 	moviesList := [5]string{
@@ -104,4 +120,15 @@ func appendInSlice() {
 
 	var movies2 = make([]string, 0, len(moviesList))
 	fmt.Println(len(movies2), cap(movies2), movies2)
+}
+
+func sliceBoundChecks() {
+	slice := []int{1, 2, 3, 4, 5}
+	_ = slice[4] // bound check to not degrade performance,
+	// withou bound check, the program will check if the index is in the slice every call
+	fmt.Println(slice[0])
+	fmt.Println(slice[1])
+	fmt.Println(slice[2])
+	fmt.Println(slice[3])
+	fmt.Println(slice[4])
 }
