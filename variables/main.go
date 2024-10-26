@@ -45,6 +45,7 @@ func main() {
 	fmt.Println(arrIndex)
 
 	pointers()
+	appendInSlice()
 }
 
 func takeInt32(i int32) {
@@ -75,4 +76,32 @@ func takeX(h int) int {
 
 func takeY(y *int) {
 	*y = 100
+}
+
+func appendInSlice() {
+	// array -> because has fixed size
+	moviesList := [5]string{
+		"Titanic",
+		"The Godfather",
+		"The Godfather II",
+		"The Godfather III",
+		"The Godfather IV",
+	}
+	fmt.Println(moviesList)
+	// slice -> because has dynamic size, if not have more capacity, it will double the actual capacity
+	var movies []string
+	fmt.Println(len(movies), cap(movies), movies)
+	movies = append(movies, "Titanic")
+	fmt.Println(len(movies), cap(movies), movies)
+	movies = append(movies, "The Godfather")
+	fmt.Println(len(movies), cap(movies), movies)
+	movies = append(movies, "The Godfather II")
+	fmt.Println(len(movies), cap(movies), movies)
+	movies = append(movies, "The Godfather III")
+	fmt.Println(len(movies), cap(movies), movies)
+	movies = append(movies, "The Godfather IV")
+	fmt.Println(len(movies), cap(movies), movies)
+
+	var movies2 = make([]string, 0, len(moviesList))
+	fmt.Println(len(movies2), cap(movies2), movies2)
 }
