@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"functions/pacote"
+	"os"
 )
 
 var idade int
@@ -23,6 +24,9 @@ func main() {
 	mult := multiplicar(2)
 	fmt.Println("Multiplicar 2 * 3 = ", mult(3))
 	fmt.Println("Somar variadico 1 + 2 + 3 + 4 = ", somarVariadico(1, 2, 3, 4))
+	doDefer()
+	doDeferLastInFirstOut()
+	openFile()
 }
 
 func somar(a int, b int) int {
@@ -55,4 +59,27 @@ func somarVariadico(args ...int) int {
 		total += v
 	}
 	return total
+}
+
+func doDefer() {
+	defer fmt.Println("DEFER world")
+	fmt.Println("DEFER hello")
+}
+
+func doDeferLastInFirstOut() {
+	defer fmt.Println("DEFER 3")
+	defer fmt.Println("DEFER 2")
+	fmt.Println("DEFER 1")
+}
+
+func openFile() {
+	f, err := os.Open("file.txt")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	defer f.Close()
+
+	// print file content
+	fmt.Println(f)
 }
