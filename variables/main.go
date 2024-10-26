@@ -36,6 +36,13 @@ func main() {
 	const t int = 10
 	var t2 int = t
 	fmt.Println(t2)
+
+	arrEmpty := [3]int{}
+	arr := [3]int{1, 2, 3}
+	arrIndex := [5]int{1: 1, 3: 2}
+	fmt.Println(arrEmpty)
+	fmt.Println(arr)
+	fmt.Println(arrIndex)
 }
 
 func takeInt32(i int32) {
