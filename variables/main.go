@@ -19,6 +19,7 @@ func main() {
 	identifyExecution("slice", slice)
 	identifyExecution("appendInSlice", appendInSlice)
 	identifyExecution("sliceBoundChecks", sliceBoundChecks)
+	identifyExecution("maps", maps)
 }
 
 func identifyExecution(identifier string, function func()) {
@@ -132,3 +133,32 @@ func sliceBoundChecks() {
 	fmt.Println(slice[3])
 	fmt.Println(slice[4])
 }
+
+func maps() {
+	var movies = map[string]string{
+		"Titanic":           "1997",
+		"The Godfather":     "1972",
+		"The Godfather II":  "1974",
+		"The Godfather III": "1990",
+	}
+	fmt.Println(movies)
+	movies["The Godfather IV"] = "2022"
+	fmt.Println(movies)
+	movie1, ok1 := movies["Titanic"]
+	movie2, ok2 := movies["Titanic II"]
+	fmt.Println(movie1, ok1)
+	fmt.Println(movie2, ok2)
+
+	delete(movies, "The Godfather III")
+	fmt.Println(movies)
+
+	for key, value := range movies {
+		fmt.Println(key, value)
+	}
+}
+
+// what builtin make in go?
+// make([]int, 0, 10) -> create a slice with 0 elements and capacity of 10
+
+// copy elements from and slice to another slice
+// copy(slice1, slice2) -> copy elements from slice2 to slice1
